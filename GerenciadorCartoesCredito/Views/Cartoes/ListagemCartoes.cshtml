@@ -1,0 +1,87 @@
+﻿@model IEnumerable<GerenciadorCartoesCredito.Models.Cartao>
+
+@{
+    ViewData["Title"] = "Cartões Cadastrados";
+}
+
+<h1>ListagemCartoes</h1>
+
+<p>
+    <a asp-action="NovoCartao" class="btn btn-success btn-sm">Novo Cartão</a>
+</p>
+<table class="table table-hover table-sm">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeBanco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroCartao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Limite)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeBanco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroCartao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Limite)
+                </td>
+                <td>
+                    <a asp-action="EditarCartao" asp-route-cartaoId="@item.CartaoId" class="btn btn-sm btn-outline-primary">Editar</a> |
+                    <a asp-action="GastosCartao" asp-route-cartaoId="@item.CartaoId" class="btn btn-sm btn-outline-secondary">Gastos</a> |
+                    <a onclick="ExibirModal(@item.CartaoId)" title="Excluir Cartão" class="btn btn-sm btn-outline-danger">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Deseja proseguir com a exclusão do Cartão</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary btnExcluir">Sim</button>
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Não</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        function ExibirModal(cartaoId) {            
+            $(".modal").modal();
+            $(".btnExcluir").on('click', function () {
+                $.ajax({
+                    url: "Cartoes/ExcluirCartao",
+                    method: "POST",
+                    data: { cartaoId: cartaoId },
+                    success: function (data) {
+                        $(".modal").modal('hide');
+                        location.reload(true);
+                    }
+                });
+            });
+        }
+    </script>
+}

@@ -55,7 +55,7 @@ namespace GerenciadorCartoesCredito
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Cartoes}/{action=ListagemCartoes}/{id?}");
             });
         }
     }
