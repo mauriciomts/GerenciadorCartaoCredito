@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciadorCartoesCredito", "GerenciadorCartoesCredito\GerenciadorCartoesCredito.csproj", "{A2F4843D-30E7-4F59-9EAB-D1B68B92CE42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2F4843D-30E7-4F59-9EAB-D1B68B92CE42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2F4843D-30E7-4F59-9EAB-D1B68B92CE42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2F4843D-30E7-4F59-9EAB-D1B68B92CE42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2F4843D-30E7-4F59-9EAB-D1B68B92CE42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21363154-AD21-4CCA-9C15-02751996CB17}
+	EndGlobalSection
+EndGlobal
