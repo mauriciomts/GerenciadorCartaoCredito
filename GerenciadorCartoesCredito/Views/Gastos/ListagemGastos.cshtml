@@ -1,46 +1,56 @@
-﻿@model IEnumerable<GerenciadorCartoesCredito.Models.Cartao>
+﻿@model GerenciadorCartoesCredito.Models.ViewModels.GastosViewModel
 
 @{
-    ViewData["Title"] = "Cartões Cadastrados";
+    ViewData["Title"] = "Gastos do Cartão " + Model.NumeroCartao;
+    string classes = "c100 big blue p" + Model.PorcentagemGasta;
 }
 
-<h1>ListagemCartoes</h1>
+<div class="alert alert-secondary">
+    Cartão número @Model.NumeroCartao
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="@classes">
+            <span>@Model.PorcentagemGasta%</span>
+            <div class="slice">
+                <div class="bar"></div>
+                <div class="fill"></div>
+            </div>
+        </div>       
+    </div>
+</div>
 
 <p>
-    <a asp-action="NovoCartao" class="btn btn-success btn-sm">Novo Cartão</a>
+    <a asp-action="NovoGasto" asp-route-cartaoId="@Model.CartaoId" class="btn btn-success btn-sm">Novo Gasto</a>
 </p>
 <table class="table table-hover table-sm">
     <thead class="thead-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NomeBanco)
+                Descrição
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NumeroCartao)
+                Valor do Gasto
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Limite)
-            </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.ListaGastos)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NomeBanco)
+                    @item.Descricao
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NumeroCartao)
+                    R$ @item.Valor
                 </td>
+
                 <td>
-                    @Html.DisplayFor(modelItem => item.Limite)
-                </td>
-                <td>
-                    <a asp-action="EditarCartao" asp-route-cartaoId="@item.CartaoId" class="btn btn-sm btn-outline-primary">Editar</a> |
-                    <a asp-controller="Gastos" asp-action="ListagemGastos" asp-route-cartaoId="@item.CartaoId" class="btn btn-sm btn-outline-secondary">Gastos</a> |
-                    <a onclick="ExibirModal(@item.CartaoId)" title="Excluir Cartão" class="btn btn-sm btn-outline-danger">Excluir</a>
+                    <a asp-action="EditarGasto" asp-route-gastoId="@item.GastoId" class="btn btn-sm btn-outline-primary">Editar</a> |
+                    <a onclick="ExibirModal(@item.GastoId)" title="Excluir Gasto" class="btn btn-sm btn-outline-danger">Excluir</a>
                 </td>
             </tr>
         }
@@ -57,7 +67,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Deseja proseguir com a exclusão de Cartão</p>
+                <p>Deseja proseguir com a exclusão de Gasto</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary btnExcluir">Sim</button>
@@ -69,13 +79,13 @@
 
 @section Scripts{
     <script>
-        function ExibirModal(cartaoId) {            
+        function ExibirModal(gastoId) {
             $(".modal").modal();
             $(".btnExcluir").on('click', function () {
                 $.ajax({
-                    url: "Cartoes/ExcluirCartao",
+                    url: "ExcluirGasto",
                     method: "POST",
-                    data: { cartaoId: cartaoId },
+                    data: { gastoId: gastoId },
                     success: function (data) {
                         $(".modal").modal('hide');
                         location.reload(true);

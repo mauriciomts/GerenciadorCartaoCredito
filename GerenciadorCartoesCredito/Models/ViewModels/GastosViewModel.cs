@@ -5,18 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GerenciadorCartoesCredito.Models
+namespace GerenciadorCartoesCredito.Models.ViewModels
 {
-    public class Gasto
+    public class GastosViewModel
     {
-        public int GastoId { get; set; }
         public int CartaoId { get; set; }
-        public Cartao Cartao { get; set; }
-        public string Descricao { get; set; }
+        public string NumeroCartao { get; set; }
+        public List<Gasto> ListaGastos  { get; set; }
 
-        [Required]
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(10,2)")]
-        public decimal Valor { get; set; }
+        public decimal PorcentagemGasta { get; set; }
     }
 }

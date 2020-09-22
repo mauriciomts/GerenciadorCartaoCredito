@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GerenciadorCartoesCredito.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20200921155153_CriacaoDB")]
+    [Migration("20200921225309_CriacaoDB")]
     partial class CriacaoDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,8 +27,8 @@ namespace GerenciadorCartoesCredito.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("Limite")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Limite")
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<string>("NomeBanco")
                         .HasColumnType("nvarchar(max)");
@@ -54,8 +54,8 @@ namespace GerenciadorCartoesCredito.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Valor")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("GastoId");
 
