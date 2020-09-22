@@ -11,13 +11,8 @@ namespace GerenciadorCartoesCredito.Models
     {
         public int CartaoId { get; set; }
         public string NomeBanco { get; set; }
-        public string NumeroCartao { get; set; }
-
-        [Required]
-        [DataType(DataType.Currency)]
-        [Column(TypeName = "decimal(10,2)")]
-        public decimal Limite { get; set; }
-
+        public string NumeroCartao { get; set; }             
+        public double Limite { get; set; }
         public ICollection<Gasto> Gastos { get; set; }
     }
 }

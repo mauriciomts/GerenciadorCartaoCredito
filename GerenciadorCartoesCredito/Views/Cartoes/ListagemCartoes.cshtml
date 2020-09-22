@@ -4,7 +4,22 @@
     ViewData["Title"] = "Cartões Cadastrados";
 }
 
-<h1>ListagemCartoes</h1>
+@if (TempData["Cadastro"] != null)
+{
+    <h6 class="alert alert-success">@TempData["Cadastro"]</h6>
+}
+
+else @if (TempData["Atualizacao"] != null)
+{
+<h6 class="alert alert-primary">@TempData["Atualizacao"]</h6>
+}
+
+else @if (TempData["Exclusao"] != null)
+{
+<h6 class="alert alert-danger">@TempData["Exclusao"]</h6>
+}
+
+<h2>@ViewData["Title"]</h2>
 
 <p>
     <a asp-action="NovoCartao" class="btn btn-success btn-sm">Novo Cartão</a>
@@ -69,7 +84,7 @@
 
 @section Scripts{
     <script>
-        function ExibirModal(cartaoId) {            
+        function ExibirModal(cartaoId) {
             $(".modal").modal();
             $(".btnExcluir").on('click', function () {
                 $.ajax({

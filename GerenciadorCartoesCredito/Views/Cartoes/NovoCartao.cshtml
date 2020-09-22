@@ -1,24 +1,24 @@
 ﻿@model GerenciadorCartoesCredito.Models.Cartao
 
 @{
-    ViewData["Title"] = "Novo Cartao";
+    ViewData["Title"] = "Novo Cartão";
 }
 
 
-<h4 class="alert alert-success">@ViewData["Title"]</h4>
+<h2>@ViewData["Title"]</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="NovoCartao">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NomeBanco" class="control-label col-form-label-sm"></label>
+                <label asp-for="NomeBanco" class="control-label col-form-label-sm">Nome do Banco</label>
                 <input asp-for="NomeBanco" class="form-control form-control-sm" />
                 <span asp-validation-for="NomeBanco" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumeroCartao" class="control-label col-form-label-sm"></label>
-                <input asp-for="NumeroCartao" class="form-control form-control-sm" />
+                <label asp-for="NumeroCartao" class="control-label col-form-label-sm">Numero do Cartão de Crédito</label>
+                <input asp-for="NumeroCartao" class="form-control form-control-sm NumeroCartao" />
                 <span asp-validation-for="NumeroCartao" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-success btn-sm" /> &emsp;
-                <a asp-action="Index" class="btn btn-link btn-sm">Voltar</a>
+                <a asp-action="ListagemCartoes" class="btn btn-link btn-sm">Voltar</a>
             </div>
         </form>
     </div>
@@ -37,4 +37,13 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+
+<script>
+    $(function () {
+        $(".NumeroCartao").mask("9999 9999 9999 9999");       
+    })
+</script>
+   
 }

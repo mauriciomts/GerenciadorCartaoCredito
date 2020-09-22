@@ -14,7 +14,7 @@ namespace GerenciadorCartoesCredito.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NomeBanco = table.Column<string>(nullable: true),
                     NumeroCartao = table.Column<string>(nullable: true),
-                    Limite = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
+                    Limite = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,7 +29,7 @@ namespace GerenciadorCartoesCredito.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CartaoId = table.Column<int>(nullable: false),
                     Descricao = table.Column<string>(nullable: true),
-                    Valor = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
+                    Valor = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {

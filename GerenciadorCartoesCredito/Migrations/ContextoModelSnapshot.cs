@@ -25,8 +25,8 @@ namespace GerenciadorCartoesCredito.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Limite")
-                        .HasColumnType("decimal(10,2)");
+                    b.Property<double>("Limite")
+                        .HasColumnType("float");
 
                     b.Property<string>("NomeBanco")
                         .HasColumnType("nvarchar(max)");
@@ -52,8 +52,8 @@ namespace GerenciadorCartoesCredito.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Valor")
-                        .HasColumnType("decimal(10,2)");
+                    b.Property<double>("Valor")
+                        .HasColumnType("float");
 
                     b.HasKey("GastoId");
 

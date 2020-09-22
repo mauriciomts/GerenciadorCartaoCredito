@@ -9,6 +9,21 @@
     Cartão número @Model.NumeroCartao
 </div>
 
+@if (TempData["Cadastro"] != null)
+{
+    <h6 class="alert alert-success">@TempData["Cadastro"]</h6>
+}
+
+else @if (TempData["Atualizacao"] != null)
+{
+<h6 class="alert alert-primary">@TempData["Atualizacao"]</h6>
+}
+
+else @if (TempData["Exclusao"] != null)
+{
+<h6 class="alert alert-danger">@TempData["Exclusao"]</h6>
+}
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="@classes">
@@ -17,7 +32,7 @@
                 <div class="bar"></div>
                 <div class="fill"></div>
             </div>
-        </div>       
+        </div>
     </div>
 </div>
 

@@ -35,6 +35,7 @@ namespace GerenciadorCartoesCredito.Controllers
         {
             if (ModelState.IsValid)
             {
+                TempData["Cadastro"] = "Cartão cadastrado com sucesso.";
                 await _contexto.AddAsync(cartao);
                 await _contexto.SaveChangesAsync();
                 return RedirectToAction(nameof(ListagemCartoes));
@@ -67,6 +68,7 @@ namespace GerenciadorCartoesCredito.Controllers
 
             if (ModelState.IsValid)
             {
+                TempData["Atualizacao"] = "Cartão atualizado com sucesso.";
                 _contexto.Update(cartao);
                 await _contexto.SaveChangesAsync();
                 return RedirectToAction(nameof(ListagemCartoes));
@@ -75,12 +77,13 @@ namespace GerenciadorCartoesCredito.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ExcluirCartao(int cartaoId)
+        public async Task<JsonResult> ExcluirCartao(int cartaoId)
         {
+            TempData["Exclusao"] = "Cartão excluído com sucesso.";
             Cartao cartao = await _contexto.Cartoes.FindAsync(cartaoId);
             _contexto.Cartoes.Remove(cartao);
             await _contexto.SaveChangesAsync();
-            return RedirectToAction(nameof(ListagemCartoes));
+            return Json("Cartão excluído com sucesso.");
         } 
     }
 }

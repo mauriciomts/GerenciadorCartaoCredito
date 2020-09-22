@@ -12,11 +12,7 @@ namespace GerenciadorCartoesCredito.Models
         public int GastoId { get; set; }
         public int CartaoId { get; set; }
         public Cartao Cartao { get; set; }
-        public string Descricao { get; set; }
-
-        [Required]
-        [DataType(DataType.Currency)]
-        [Column(TypeName = "decimal(10,2)")]
-        public decimal Valor { get; set; }
+        public string Descricao { get; set; }     
+        public double Valor { get; set; }
     }
 }

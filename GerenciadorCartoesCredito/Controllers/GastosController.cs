@@ -30,7 +30,7 @@ namespace GerenciadorCartoesCredito.Controllers
                 CartaoId = cartaoId,
                 NumeroCartao = cartao.NumeroCartao,
                 ListaGastos = await _contexto.Gastos.Where(c => c.CartaoId == cartaoId).ToListAsync(),
-                PorcentagemGasta = Convert.ToInt32(((int)soma / cartao.Limite) * 100)
+                PorcentagemGasta = Convert.ToInt32((soma / cartao.Limite) * 100)
             };
             return View(gastosViewModel);
         }
@@ -52,6 +52,7 @@ namespace GerenciadorCartoesCredito.Controllers
         {
             if (ModelState.IsValid)
             {
+                TempData["Cadastro"] = "Gasto cadastrado com sucesso.";
                 await _contexto.AddAsync(gasto);
                 await _contexto.SaveChangesAsync();
                 return RedirectToAction(nameof(ListagemGastos), new { cartaoId = gasto.CartaoId});
@@ -83,6 +84,7 @@ namespace GerenciadorCartoesCredito.Controllers
 
             if (ModelState.IsValid)
             {
+                TempData["Atualizacao"] = "Gasto atualizado com sucesso.";
                 _contexto.Update(gasto);
                 await _contexto.SaveChangesAsync();
                 return RedirectToAction(nameof(ListagemGastos), new { cartaoId = gasto.CartaoId });
@@ -94,6 +96,7 @@ namespace GerenciadorCartoesCredito.Controllers
         [HttpPost]
         public async Task<JsonResult> ExcluirGasto(int gastoId)
         {
+            TempData["Exclusao"] = "Gasto excluído com sucesso.";
             Gasto gasto = await _contexto.Gastos.FindAsync(gastoId);
             _contexto.Remove(gasto);
             await _contexto.SaveChangesAsync();
